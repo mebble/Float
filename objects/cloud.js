@@ -21,21 +21,21 @@ var Cloud = function(x, y, numParts, size) {
 	this.initParts();
 };
 Cloud.prototype.initParts = function() {
-	for (let i = 0; i < this.numParts; i++) {
+	for (var i = 0; i < this.numParts; i++) {
 		var px, py, pw;
 		px = random(-this.width, this.width);
 		py = random(-this.height, this.height);
 		pw = random(0.3 * this.width, this.width);
-		this.cloudParts.push({x: px, y: py, w: pw});
+		this.cloudParts.push({x: px, y: py, width: pw});
 	}
 };
 Cloud.prototype.draw = function() {
 	rectMode(CENTER);
 	noStroke();
-	pushMatrix();
+	push();
 		translate(this.x, this.y);
 		scale(this.size);
-		for (let i = 0; i < this.cloudParts.length; i++) {
+		for (var i = 0; i < this.cloudParts.length; i++) {
 			var px, py, pw, ph, edge;
 			px = this.cloudParts[i].x;
 			py = this.cloudParts[i].y;
@@ -52,7 +52,7 @@ Cloud.prototype.draw = function() {
 		stroke(255, 0, 0);
 		point(0, 0);
 		*/
-	popMatrix();
+	pop();
 };
 Cloud.prototype.update = function() {
 	//!refactor! to allow -=
