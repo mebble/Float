@@ -5,7 +5,7 @@ var Cloud = function(x, y, numParts, size) {
 	this.size = size;
 
 	this.color = color("#F2F2F2");
-	this.shadow = color("rgb(173, 173, 173, 150)");
+	this.shadow = color(170, 170, 170, 150);
 	this.shadowOff = 2;
 	this.width = 100;
 	this.height = 50;
