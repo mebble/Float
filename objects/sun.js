@@ -4,7 +4,7 @@ var Sun = function(x, y, size) {
 	this.size = size;
 	this.scale = 1;
 	this.freq = 4;
-	this.amp = 1.5;
+	this.amp = 0.1;
 	this.bodyCol = color(255, 213, 0);
 	this.rayCol = color(255, 132, 0);
 };
@@ -19,6 +19,6 @@ Sun.prototype.draw = function() {
 	pop();
 };
 Sun.prototype.update = function() {
-	//!refactor!
+	//oscillate around a scale of 1
 	this.scale = this.amp * sin(this.freq * frameCount) + 1;
 };
