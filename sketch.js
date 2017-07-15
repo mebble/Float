@@ -4,6 +4,9 @@ var canvasHeight = 600;
 /* GLOBALS */
 var scrollSpeed = 1;
 
+/* CONSTANTS */
+const SHADOW = "rgba(170, 170, 170, 150)";
+
 /* OBJECTS */
 var cloud;
 
