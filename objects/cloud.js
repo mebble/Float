@@ -35,7 +35,7 @@ Cloud.prototype.draw = function() {
 		translate(this.x, this.y);
 		scale(this.size);
 		for (var i = 0; i < this.cloudParts.length; i++) {
-			var px, py, pw, ph, edge;
+			var px, py, pw, ph, corner;
 			px = this.cloudParts[i].x;
 			py = this.cloudParts[i].y;
 			pw = this.cloudParts[i].width;
