@@ -5,7 +5,6 @@ var Cloud = function(x, y, numParts, size) {
 	this.size = size;
 
 	this.color = color("#F2F2F2");
-	this.shadowOff = 2;
 	this.width = 100;
 	this.height = 50;
 	this.cloudParts = [];
@@ -43,11 +42,12 @@ Cloud.prototype.draw = function() {
 			corner = 15;
 
 			fill(SHADOW);
-			rect(px + this.shadowOff, py + this.shadowOff, pw, ph, corner);
+			rect(px + SHADOW_OFF, py + SHADOW_OFF, pw, ph, corner);
 			fill(this.color);
 			rect(px, py, pw, ph, corner);
 		}
 		/*
+		//debugger:
 		stroke(255, 0, 0);
 		point(0, 0);
 		*/
