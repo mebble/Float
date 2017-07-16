@@ -4,7 +4,7 @@ var canvasHeight = 600;
 var scrollSpeed = 1;
 
 /* CONSTANTS */
-const SHADOW = "rgba(84, 84, 84, 150)";
+const SHADOW = "rgba(130, 130, 130, 1)";
 const SHADOW_OFF = 2;
 
 /* OBJECTS */
