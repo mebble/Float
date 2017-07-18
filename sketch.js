@@ -31,4 +31,5 @@ function setup() {
 function draw() {
 	background("#70EBFF");
 	balloon.draw();
+	balloon.update();
 }
