@@ -31,6 +31,7 @@ Cloud.prototype.draw = function() {
 	rectMode(CENTER);
 	noStroke();
 	push();
+	{
 		translate(this.x, this.y);
 		scale(this.size);
 		for (var i = 0; i < this.cloudParts.length; i++) {
@@ -51,6 +52,7 @@ Cloud.prototype.draw = function() {
 		stroke(255, 0, 0);
 		point(0, 0);
 		*/
+	}
 	pop();
 };
 Cloud.prototype.update = function() {

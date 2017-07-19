@@ -15,27 +15,32 @@ Sun.prototype.draw = function() {
 	noStroke();
 
 	push();
+	{
 		translate(this.x, this.y);
 		scale(this.scale);
 		rotate(frameCount);
 
 		//rays shadow
 		push();
+		{
 			rotate(SHADOW_OFF);
 			fill(SHADOW);
 			for (var i = 0; i < numRays; i++) {
 				triangle(0, -25, 20, -5, -20, -5);
 				rotate(360 / numRays);
 			}
+		}
 		pop();
 
 		//rays
 		push();
+		{
 			fill(this.rayCol);
 			for (var i = 0; i < numRays; i++) {
 				triangle(0, -25, 20, -5, -20, -5);
 				rotate(360 / numRays);
 			}
+		}
 		pop();
 
 		//sun body
@@ -50,6 +55,7 @@ Sun.prototype.draw = function() {
 		stroke(255, 0, 0);
 		point(5, 0);
 		*/
+	}
 	pop();
 };
 Sun.prototype.update = function() {

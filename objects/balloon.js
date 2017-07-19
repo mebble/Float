@@ -23,6 +23,7 @@ Balloon.prototype.draw = function() {
 	balloonSize = 120;
 
 	push();
+	{
 		translate(this.x, this.y); //(0, 0) is center of balloon
 		scale(this.scale);
 		basketX = 0;
@@ -45,6 +46,7 @@ Balloon.prototype.draw = function() {
 		rectMode(CENTER);
 		fill(this.color.basket);
 		rect(basketX, basketY, basketW, basketH, 3);
+	}
 	pop();	
 };
 Balloon.prototype.update = function() {
