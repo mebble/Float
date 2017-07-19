@@ -6,7 +6,7 @@ var Balloon = function(props) {
 	this.accY = 0.1;
 	this.maxSpeed = 3;
 
-	this.size = props.size || 120;
+	this.scale = props.scale || 1;
 	this.color = props.color || {
 		pilot: "#000",
 		balloon: "#000",
@@ -16,34 +16,36 @@ var Balloon = function(props) {
 	this.npc = props.npc || false;
 };
 Balloon.prototype.draw = function() {
-	var ropeLen = 80;
-	var basketX = this.x;
-	var basketY = this.y + ropeLen;
-	var basketW = 40;
-	var basketH = 20;
+	var ropeLen, basketX, basketY, basketW, basketH, balloonSize;
+	ropeLen = 80;
+	basketW = 40;
+	basketH = 20;
+	balloonSize = 120;
 
-	/*
-	!refactor!
-	Hard code the size of balloon and use
-	scale to resize it for different instances
-	*/
+	push();
+		translate(this.x, this.y); //(0, 0) is center of balloon
+		scale(this.scale);
+		basketX = 0;
+		basketY = 0 + ropeLen;
 
-	//ropes
-	strokeWeight(4);
-	stroke("#A84B48");
-	for (var i = -1; i <= 1; i++) {
-		line(this.x + i * (basketW/3), this.y, this.x + i * (basketW/3), basketY);
-	}
+		//ropes
+		strokeWeight(4);
+		stroke("#A84B48");
+		for (var i = -1; i <= 1; i++) {
+			line(0 + i * (basketW/3), 0, 0 + i * (basketW/3), basketY);
+		}
 
-	noStroke();
-	//balloon
-	fill(this.color.balloon);
-	ellipse(this.x, this.y, this.size, this.size);
+		noStroke();
 
-	//basket
-	rectMode(CENTER);
-	fill(this.color.basket);
-	rect(basketX, basketY, basketW, basketH, 3);
+		//balloon
+		fill(this.color.balloon);
+		ellipse(0, 0, balloonSize, balloonSize);
+
+		//basket
+		rectMode(CENTER);
+		fill(this.color.basket);
+		rect(basketX, basketY, basketW, basketH, 3);
+	pop();	
 };
 Balloon.prototype.update = function() {
 	/* update position */
