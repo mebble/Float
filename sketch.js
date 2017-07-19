@@ -21,15 +21,15 @@ function setup() {
 	balloon = new Balloon({
 		color: {
 			pilot: "#007EFF",
-			balloon: "#ff0000",
-			rope: "#ffcc00",
-			basket: "#BA6C07"
+			balloon: "#ce5a57",
+			rope: "#e45641",
+			basket: "#73605b"
 		}
 	});
 }
 
 function draw() {
-	background("#70EBFF");
+	background("#4cb5f5");
 	balloon.draw();
 	balloon.update();
 }
