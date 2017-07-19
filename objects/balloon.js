@@ -17,21 +17,22 @@ var Balloon = function(props) {
 };
 Balloon.prototype.draw = function() {
 	var ropeLen, basketX, basketY, basketW, basketH, balloonSize;
-	ropeLen = 80;
+	ropeLen = 85;
 	basketW = 40;
 	basketH = 20;
 	balloonSize = 120;
 
 	push();
 	{
+		rectMode(CENTER);
 		translate(this.x, this.y); //(0, 0) is center of balloon
 		scale(this.scale);
 		basketX = 0;
 		basketY = 0 + ropeLen;
 
 		//ropes
-		strokeWeight(4);
-		stroke("#A84B48");
+		strokeWeight(3);
+		stroke(this.color.rope);
 		for (var i = -1; i <= 1; i++) {
 			line(0 + i * (basketW/3), 0, 0 + i * (basketW/3), basketY);
 		}
@@ -40,10 +41,10 @@ Balloon.prototype.draw = function() {
 
 		//balloon
 		fill(this.color.balloon);
+		rect(0, 0 + 55, basketW, basketH, 3);
 		ellipse(0, 0, balloonSize, balloonSize);
 
 		//basket
-		rectMode(CENTER);
 		fill(this.color.basket);
 		rect(basketX, basketY, basketW, basketH, 3);
 	}
