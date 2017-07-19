@@ -2,7 +2,10 @@ var Balloon = function(props) {
 	this.x = props.x || canvasWidth/2;
 	this.y = props.y || canvasHeight/2;
 	this.velX = this.velY = 0;
-	this.speed = 2;
+	this.accX = 0.1;
+	this.accY = 0.1;
+	this.maxSpeed = 3;
+
 	this.size = props.size || 120;
 	this.color = props.color || {
 		pilot: "#000",
@@ -43,23 +46,47 @@ Balloon.prototype.draw = function() {
 	rect(basketX, basketY, basketW, basketH, 3);
 };
 Balloon.prototype.update = function() {
-	//main movement update
+	/* update position */
 	this.x += this.velX;
 	this.y += this.velY;
 
-	if (keys[UP_ARROW]) {
-		this.velY = -this.speed;
-	} else if (keys[DOWN_ARROW]) {
-		this.velY = this.speed;
+	/* update velocity */
+	if (keys[RIGHT_ARROW]) {
+		this.velX += this.accX;
+	} else if (keys[LEFT_ARROW]) {
+		this.velX -= this.accX;
 	} else {
-		this.velY = 0;
+		//slow down (ballon will wander)
+		if (this.velX > 0) {
+			this.velX -= AIR_RESIST;
+		} else {
+			this.velX += AIR_RESIST;
+		}
 	}
 
-	if (keys[RIGHT_ARROW]) {
-		this.velX = this.speed;
-	} else if (keys[LEFT_ARROW]) {
-		this.velX = -this.speed;
+	if (keys[UP_ARROW]) {
+		this.velY -= this.accY;
+	} else if (keys[DOWN_ARROW]) {
+		this.velY += this.accY;
 	} else {
-		this.velX = 0;
+		//slow down (ballon will wander)
+		if (this.velY > 0) {
+			this.velY -= AIR_RESIST;
+		} else {
+			this.velY += AIR_RESIST;
+		}
+
+		//oscillate !refactor!
+		//this.velY = 0.3 * sin(4 * frameCount) + this.velY;
 	}
+
+	this.velX = constrain(this.velX, -this.maxSpeed, this.maxSpeed);
+	this.velY = constrain(this.velY, -this.maxSpeed, this.maxSpeed);
+
+	/* update acceleration */
+
+	/*
+	//debugger:
+	console.log(this.velX, this.velY);
+	*/
 };

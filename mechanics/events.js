@@ -3,10 +3,10 @@ var keys = [];
 
 function keyPressed() {
 	keys[keyCode] = true;
-	return false; //prevent default browser behaviour
+	//return false; //disables browser keyboard shortcuts
 }
 
 function keyReleased() {
 	keys[keyCode] = false;
-	return false; //prevent default browser behaviour
+	//return false; //disables browser keyboard shortcuts
 }
