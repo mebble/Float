@@ -8,10 +8,10 @@ var Balloon = function(props) {
 
 	this.scale = props.scale || 1;
 	this.color = props.color || {
-		pilot: "#000",
-		balloon: "#000",
-		rope: "#000",
-		basket: "#000"
+		pilot: "#007EFF",
+		balloon: "#ce5a57",
+		rope: "#e45641",
+		basket: "#F7A85E"
 	};
 	this.npc = props.npc || false;
 };
