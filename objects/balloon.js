@@ -32,18 +32,28 @@ Balloon.prototype.draw = function() {
 
 		//ropes
 		strokeWeight(3);
-		stroke(this.color.rope);
+		
 		for (var i = -1; i <= 1; i++) {
+			stroke(SHADOW);
+			line(SHADOW_OFF + i * (basketW/3), 0, SHADOW_OFF + i * (basketW/3), basketY)
+			stroke(this.color.rope);
 			line(0 + i * (basketW/3), 0, 0 + i * (basketW/3), basketY);
 		}
 
 		noStroke();
 
+		//balloon shadow
+		fill(SHADOW);
+		rect(SHADOW_OFF, SHADOW_OFF + 55, basketW, basketH, 3);
+		ellipse(SHADOW_OFF, SHADOW_OFF, balloonSize, balloonSize);
 		//balloon
 		fill(this.color.balloon);
 		rect(0, 0 + 55, basketW, basketH, 3);
 		ellipse(0, 0, balloonSize, balloonSize);
 
+		//basket shadow
+		fill(SHADOW);
+		rect(basketX + SHADOW_OFF, basketY + SHADOW_OFF, basketW, basketH, 3);
 		//basket
 		fill(this.color.basket);
 		rect(basketX, basketY, basketW, basketH, 3);
@@ -92,6 +102,7 @@ Balloon.prototype.update = function() {
 
 	/*
 	//debugger:
-	console.log(this.velX, this.velY);
+	console.log("Pos:", this.x, this.y);
+	console.log("Vel:", this.velX, this.velY);
 	*/
 };

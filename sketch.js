@@ -23,7 +23,7 @@ function setup() {
 			pilot: "#007EFF",
 			balloon: "#ce5a57",
 			rope: "#e45641",
-			basket: "#73605b"
+			basket: "#6c5b7b"
 		}
 	});
 }
