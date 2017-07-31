@@ -1,10 +1,14 @@
 var Mountain = function(peakX, baseY, width, height) {
+	this.width = width;
+	this.height = height;
 	this.corners = {
-		peak: [peakX, baseY - height],
-		left: [peakX - width/2, baseY],
+		peak: [peakX, baseY - this.height],
+		left: [peakX - this.width/2, baseY],
 		middle: [peakX, baseY],
-		right: [peakX + width/2, baseY]
+		right: [peakX + this.width/2, baseY]
 	};
+	this.snow = this.calcSnow(this.corners);
+	this.snowCol = "#ffffff";
 	this.leftShade = color(232, 167, 130);
 	this.rightShade = color(194, 149, 128);
 };
@@ -21,11 +25,46 @@ Mountain.prototype.draw = function() {
 	endShape();
 
 	/* snowcap */
-	var snowY = this.calcSnowcapHeight();
+	fill(this.snowCol);
+	beginShape();
+	this.snow.drawVertices();
+	endShape();
+
+	/*
+	//debugger:
+	console.log(snow.x, snow.y, mouseX, mouseY);
+	*/
 };
-Mountain.prototype.calcSnowcapHeight = function() {
+Mountain.prototype.calcSnow = function(m) {
 	/**
-	 *	Calculate snowcap height based on params using
-	 *	linear equations. Return an object of results
+	 *	Return a snowcap object
+	 *	based on mountain corners using a linear equation
 	 */
+	var snowYStart = m.peak[1] + this.height/3;
+	var snowYStop = snowYStart;
+	var snowXStart = ((m.peak[0] - m.left[0]) * (snowYStart - m.left[1])) / (m.peak[1] - m.left[1]) + m.left[0]; //equation of a line using two known points
+	var snowXStop = m.peak[0] + (m.peak[0] - snowXStart);
+
+	var vertices = [{x: snowXStart, y: snowYStart}];
+	(function pushVertices() {
+		var numVertices = floor(random(2, 6));
+		var snowX = snowXStart + random(10, 20);
+		var snowY = snowYStart + floor(random(-10, 10));
+
+		for (var i = 0; i < numVertices; i++) {
+			vertices.push({x: snowX, y: snowY});
+			snowX += random(10, 20);
+			snowY = snowYStart + floor(random(-10, 10));
+		}
+		vertices.push({x: snowXStop, y: snowYStop});
+	})();
+
+	return {
+		"vertices": vertices,
+		drawVertices: function() {
+			for (var i = 0; i < this.vertices.length; i++) {
+				vertex(this.vertices[i].x, this.vertices[i].y);
+			}
+		}
+	};
 };
