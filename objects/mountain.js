@@ -40,7 +40,7 @@ Mountain.prototype.calcSnow = function(m) {
 	 *	Return a snowcap object
 	 *	based on mountain corners using a linear equation
 	 */
-	var snowYStart = m.peak[1] + this.height/3;
+	var snowYStart = m.peak[1] + this.height/2;
 	var snowYStop = snowYStart;
 	var snowXStart = ((m.peak[0] - m.left[0]) * (snowYStart - m.left[1])) / (m.peak[1] - m.left[1]) + m.left[0]; //equation of a line using two known points
 	var snowXStop = m.peak[0] + (m.peak[0] - snowXStart);
@@ -50,19 +50,27 @@ Mountain.prototype.calcSnow = function(m) {
 		{x: snowXStart, y: snowYStart}
 	];
 	(function pushVertices() {
-		var numVertices = floor(random(2, 6));
+		var numVertices = floor(random(5, 8));
 		var snowX, snowY;
-		var step = -1;
 		var capWidth = snowXStop - snowXStart;
+		var capRange = 50;
 
 		for (var i = 0; i < numVertices; i++) {
 			snowX = snowXStart + (i + 1) * (capWidth / numVertices);
-			snowY = snowYStart + step * floor(random(10, 20));
-			step = -step;
+			snowY = snowYStart + round(random(-1, 1)) * adjustYRange(snowX, capRange);
 			vertices.push({x: snowX, y: snowY});
 		}
 		vertices.push({x: snowXStop, y: snowYStop});
 	})();
+
+	function adjustYRange(x, capRange) {
+		/**
+		 * Set the amount of y deviation based on x value
+		 * using inverted abs function
+		 */
+		var a = map(x, snowXStart, snowXStop, -capRange, capRange);
+		return -abs(a) + capRange;
+	}
 
 	return {
 		"vertices": vertices,
