@@ -15,7 +15,7 @@ function setup() {
 	createCanvas(canvasWidth, canvasHeight);
 	angleMode(DEGREES);
 	ground = new Ground(5/6 * canvasHeight, '#6DBE40');
-	mountain = new Mountain(canvasWidth/2, ground.y, 300, 270);
+	mountain = new Mountain(canvasWidth/2, ground.y, 400, 270);
 }
 
 function draw() {

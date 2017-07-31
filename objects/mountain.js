@@ -52,11 +52,13 @@ Mountain.prototype.calcSnow = function(m) {
 	(function pushVertices() {
 		var numVertices = floor(random(2, 6));
 		var snowX = snowXStart;
-		var snowY = snowYStart;
+		var step = -1;
+		var capWidth = snowXStop - snowXStart;
 
 		for (var i = 0; i < numVertices; i++) {
-			snowX += random(10, 20);
-			snowY = snowYStart + floor(random(-20, 20));
+			snowX = snowXStart + (i + 1) * (capWidth / numVertices);
+			snowY = snowYStart + step * floor(random(20));
+			step = -step;
 			vertices.push({x: snowX, y: snowY});
 		}
 		vertices.push({x: snowXStop, y: snowYStop});
