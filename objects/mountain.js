@@ -45,16 +45,19 @@ Mountain.prototype.calcSnow = function(m) {
 	var snowXStart = ((m.peak[0] - m.left[0]) * (snowYStart - m.left[1])) / (m.peak[1] - m.left[1]) + m.left[0]; //equation of a line using two known points
 	var snowXStop = m.peak[0] + (m.peak[0] - snowXStart);
 
-	var vertices = [{x: snowXStart, y: snowYStart}];
+	var vertices = [
+		{x: m.peak[0], y: m.peak[1]},
+		{x: snowXStart, y: snowYStart}
+	];
 	(function pushVertices() {
 		var numVertices = floor(random(2, 6));
-		var snowX = snowXStart + random(10, 20);
-		var snowY = snowYStart + floor(random(-10, 10));
+		var snowX = snowXStart;
+		var snowY = snowYStart;
 
 		for (var i = 0; i < numVertices; i++) {
-			vertices.push({x: snowX, y: snowY});
 			snowX += random(10, 20);
-			snowY = snowYStart + floor(random(-10, 10));
+			snowY = snowYStart + floor(random(-20, 20));
+			vertices.push({x: snowX, y: snowY});
 		}
 		vertices.push({x: snowXStop, y: snowYStop});
 	})();
