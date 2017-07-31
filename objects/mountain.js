@@ -1,4 +1,6 @@
 var Mountain = function(peakX, baseY, width, height) {
+	this.x = 0;
+	this.speed = 0.2 * scrollSpeed;
 	this.width = width;
 	this.height = height;
 	this.corners = {
@@ -14,21 +16,27 @@ var Mountain = function(peakX, baseY, width, height) {
 };
 Mountain.prototype.draw = function() {
 	noStroke();
-	/* mountain */
-	beginShape(TRIANGLE_STRIP);
-	fill(this.leftShade);
-	vertex(...this.corners.left);
-	vertex(...this.corners.peak);
-	vertex(...this.corners.middle);
-	fill(this.rightShade);
-	vertex(...this.corners.right);
-	endShape();
 
-	/* snowcap */
-	fill(this.snowCol);
-	beginShape();
-	this.snow.drawVertices();
-	endShape();
+	push();
+	{
+		translate(this.x, 0);
+		/* mountain */
+		beginShape(TRIANGLE_STRIP);
+		fill(this.leftShade);
+		vertex(...this.corners.left);
+		vertex(...this.corners.peak);
+		vertex(...this.corners.middle);
+		fill(this.rightShade);
+		vertex(...this.corners.right);
+		endShape();
+
+		/* snowcap */
+		fill(this.snowCol);
+		beginShape();
+		this.snow.drawVertices();
+		endShape();
+	}
+	pop();
 
 	/*
 	//debugger:
@@ -80,4 +88,7 @@ Mountain.prototype.calcSnow = function(m) {
 			}
 		}
 	};
+};
+Mountain.prototype.update = function() {
+	this.x -= this.speed;
 };

@@ -21,5 +21,6 @@ function setup() {
 function draw() {
 	background("#4cb5f5");
 	mountain.draw();
+	mountain.update();
 	ground.draw();
 }
