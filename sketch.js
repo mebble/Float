@@ -1,4 +1,5 @@
 /* GLOBALS */
+var canvas;
 var canvasWidth = 600;
 var canvasHeight = 600;
 var scrollSpeed = 1;
@@ -12,7 +13,9 @@ var mountain;
 var ground;
 
 function setup() {
-	createCanvas(canvasWidth, canvasHeight);
+	canvas = createCanvas(canvasWidth, canvasHeight);
+	centerCanvas();
+
 	angleMode(DEGREES);
 	ground = new Ground(5/6 * canvasHeight, '#6DBE40');
 	mountain = new Mountain(canvasWidth/2, ground.y, 400, 270);
@@ -23,4 +26,15 @@ function draw() {
 	mountain.draw();
 	mountain.update();
 	ground.draw();
+}
+
+function windowResized() {
+	centerCanvas();
+}
+
+function centerCanvas() {
+	var x, y;
+	x = (windowWidth - width) / 2;
+	y = (windowHeight - height) / 2;
+	canvas.position(x, y);
 }
