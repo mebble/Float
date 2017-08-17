@@ -10,7 +10,7 @@ const SHADOW_OFF = 2;
 
 /* OBJECTS */
 var ground;
-var pine;
+var wind;
 
 function setup() {
 	canvas = createCanvas(canvasWidth, canvasHeight);
@@ -18,13 +18,13 @@ function setup() {
 	angleMode(DEGREES);
 
 	ground = new Ground(5/6 * canvasHeight, "#1CE29F");
-	pine = new Pine(canvasWidth/2, canvasHeight/2, "#509A72");
+	wind = new Wind(canvasWidth/2, canvasHeight/2, 0.15);
 }
 
 function draw() {
 	background("#4cb5f5");
-	pine.draw();
-	pine.update();
+	wind.draw();
+	wind.update();
 	ground.draw();
 }
 
