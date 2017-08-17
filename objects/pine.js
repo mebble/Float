@@ -19,4 +19,5 @@ Pine.prototype.update = function() {
 	this.topX = mouseX;
 	this.topY = mouseY;
 	this.width = ((0 - 200)/(ground.y - 0)) * (this.topY - 0) + 200;
+	this.height = ground.y - this.topY;
 };
