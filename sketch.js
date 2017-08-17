@@ -17,8 +17,8 @@ function setup() {
 	centerCanvas();
 	angleMode(DEGREES);
 
-	ground = new Ground(5/6 * canvasHeight, 'rgba(255, 255, 255, 0)');
-	pine = new Pine(canvasWidth/2, canvasHeight/2, [80, 154, 114]);
+	ground = new Ground(5/6 * canvasHeight, "#1CE29F");
+	pine = new Pine(canvasWidth/2, canvasHeight/2, "#509A72");
 }
 
 function draw() {
@@ -26,7 +26,6 @@ function draw() {
 	pine.draw();
 	pine.update();
 	ground.draw();
-	console.log(mouseX, mouseY);
 }
 
 function windowResized() {
