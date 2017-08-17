@@ -16,5 +16,7 @@ Pine.prototype.draw = function() {
 	endShape();
 };
 Pine.prototype.update = function() {
-	this.topX -= this.speed;
+	this.topX = mouseX;
+	this.topY = mouseY;
+	this.width = -1/2 * this.topY + 200;
 };
