@@ -30,4 +30,6 @@ Wind.prototype.draw = function() {
 	}
 	pop();
 };
-Wind.prototype.update = function() {};
+Wind.prototype.update = function() {
+	this.x -= this.speed;
+};
