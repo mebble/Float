@@ -26,6 +26,7 @@ function draw() {
 	pine.draw();
 	pine.update();
 	ground.draw();
+	console.log(mouseX, mouseY);
 }
 
 function windowResized() {
