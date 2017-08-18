@@ -26,7 +26,7 @@ function draw() {
 
 function centerCanvas() {
 	var x, y;
-	x = (windowWidth - width) / 2;
-	y = (windowHeight - height) / 2;
+	x = (windowWidth - canvasWidth) / 2;
+	y = (windowHeight - canvasHeight) / 2;
 	canvas.position(x, y);
 }
