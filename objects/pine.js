@@ -1,9 +1,9 @@
-var Pine = function(topX, topY, col) {
+var Pine = function(topX, topY, col, speed) {
 	this.topX = topX;
 	this.topY = topY;
 	this.width = ((0 - 200)/(ground.y - 0)) * (this.topY - 0) + 200;
 	this.height = ground.y - this.topY;
-	this.speed = scrollSpeed;
+	this.speed = speed;
 	this.color = col;
 };
 Pine.prototype.draw = function() {
