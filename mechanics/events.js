@@ -10,3 +10,7 @@ function keyReleased() {
 	keys[keyCode] = false;
 	//return false; //disables browser keyboard shortcuts
 }
+
+function windowResized() {
+	centerCanvas();
+}

@@ -28,10 +28,6 @@ function draw() {
 	ground.draw();
 }
 
-function windowResized() {
-	centerCanvas();
-}
-
 function centerCanvas() {
 	var x, y;
 	x = (windowWidth - width) / 2;
