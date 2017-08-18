@@ -1,6 +1,6 @@
-var mountainQ,
-	windQ,
-	foreTreeQ,
-	backTreeQ,
-	foreCloudQ,
+var mountainQ = [],
+	windQ = [],
+	foreTreeQ = [],
+	backTreeQ = [],
+	foreCloudQ = [],
 	backCloudQ = [];
