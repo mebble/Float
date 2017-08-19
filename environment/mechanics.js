@@ -1,8 +1,7 @@
-function initQueue(queue, params) {
-	var p = params;
-	var x;
+function initQueue(qParams, modifyConfig) {
+	var p = qParams;
 	for (var i = 0; i < p.initNum; i++) {
-		x = p.xStart + i * p.xStep;
-		queue.push(new p.classType(p.config));
+		p.queue.push(new p.classType(p.config));
+		modifyConfig(p.config);
 	}
 }
