@@ -10,7 +10,7 @@ var Mountain = function(config) {
 		right: [config.peakX + this.width/2, config.baseY]
 	};
 	this.snow = this.calcSnow(this.corners);
-	this.snowCol = config.snowCol || "#ffffff";
+	this.snowColor = config.snowColor || "#ffffff";
 	this.leftShade = config.leftShade || color(232, 167, 130);
 	this.rightShade = config.rightShade || color(194, 149, 128);
 };
@@ -31,7 +31,7 @@ Mountain.prototype.draw = function() {
 		endShape();
 
 		/* snowcap */
-		fill(this.snowCol);
+		fill(this.snowColor);
 		beginShape();
 		this.snow.drawVertices();
 		endShape();

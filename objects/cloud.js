@@ -3,7 +3,7 @@ var Cloud = function(config) {
 	this.y = config.y;
 	this.numParts = config.numParts;
 	this.size = config.size;
-	this.color = config.color || color("#F2F2F2");
+	this.color = config.color || "#F2F2F2";
 	this.width = config.width || 100;
 	this.height = config.height || 50;
 

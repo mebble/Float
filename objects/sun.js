@@ -5,8 +5,8 @@ var Sun = function(config) {
 	this.scale = 1;
 	this.freq = 4;
 	this.amp = 0.1;
-	this.bodyCol = color(255, 213, 0);
-	this.rayCol = color(255, 132, 0);
+	this.bodyColor = color(255, 213, 0);
+	this.rayColor = color(255, 132, 0);
 };
 Sun.prototype.draw = function() {
 	var numRays = 12;
@@ -35,7 +35,7 @@ Sun.prototype.draw = function() {
 		//rays
 		push();
 		{
-			fill(this.rayCol);
+			fill(this.rayColor);
 			for (var i = 0; i < numRays; i++) {
 				triangle(0, -25, 20, -5, -20, -5);
 				rotate(360 / numRays);
@@ -47,7 +47,7 @@ Sun.prototype.draw = function() {
 		rotate(-frameCount); //prevent sun body rotation
 		fill(SHADOW);
 		ellipse(0 + SHADOW_OFF - 1, 0 + SHADOW_OFF - 1, bodySize, bodySize);
-		fill(this.bodyCol);
+		fill(this.bodyColor);
 		ellipse(0, 0, bodySize, bodySize); 
 
 		/*
