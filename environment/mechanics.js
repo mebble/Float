@@ -1,7 +1,6 @@
-function initQueue(qParams, modifyConfig) {
-	var p = qParams;
-	for (var i = 0; i < p.initNum; i++) {
-		p.queue.push(new p.classType(p.config));
-		modifyConfig(p.config);
+function initQueue(params, config, modifyConfig) {
+	for (var i = 0; i < params.initNum; i++) {
+		params.queue.push(new params.classType(config));
+		modifyConfig(config, params);
 	}
 }

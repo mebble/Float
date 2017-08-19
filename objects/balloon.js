@@ -1,19 +1,19 @@
-var Balloon = function(props) {
-	this.x = props.x || canvasWidth/2;
-	this.y = props.y || canvasHeight/2;
+var Balloon = function(config) {
+	this.x = config.x || canvasWidth/2;
+	this.y = config.y || canvasHeight/2;
 	this.velX = this.velY = 0;
 	this.accX = 0.1;
 	this.accY = 0.1;
 	this.maxSpeed = 3;
 
-	this.scale = props.scale || 1;
-	this.color = props.color || {
+	this.scale = config.scale || 1;
+	this.color = config.color || {
 		pilot: "#007EFF",
 		balloon: "#ce5a57",
 		rope: "#e45641",
 		basket: "#F7A85E"
 	};
-	this.npc = props.npc || false;
+	this.npc = config.npc || false;
 };
 Balloon.prototype.draw = function() {
 	var ropeLen, basketX, basketY, basketW, basketH, balloonSize;
