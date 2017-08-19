@@ -15,14 +15,32 @@ function setup() {
 	canvas = createCanvas(canvasWidth, canvasHeight);
 	centerCanvas();
 	angleMode(DEGREES);
+
 	ground = new Ground({
 		color: "#1CE29F"
+	});
+	initQueue({
+		queue: foreTreeQ,
+		initNum: 25,
+		xStep: 20,
+		classType: Pine
+	}, {
+		topX: 0,
+		topY: random(280, 330),
+		color: "#0B936E"
+	}, function(config, params) {
+		config.topX += params.xStep;
+		config.topY = random(400, 430);
 	});
 }
 
 function draw() {
 	background("#4cb5f5");
 	ground.draw();
+	foreTreeQ.forEach(function(elem) {
+		elem.draw();
+		elem.update();
+	});
 }
 
 function centerCanvas() {
