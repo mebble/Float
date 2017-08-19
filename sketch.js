@@ -15,21 +15,13 @@ function setup() {
 	canvas = createCanvas(canvasWidth, canvasHeight);
 	centerCanvas();
 	angleMode(DEGREES);
-	ground = new Ground(0, 5/6 * canvasHeight, "#1CE29F");
-	initQueue(foreTreeQ, {
-		initNum: 25,
-		xStart: 0,
-		xStep: 20,
-		classType: Pine
+	ground = new Ground({
+		color: "#1CE29F"
 	});
 }
 
 function draw() {
 	background("#4cb5f5");
-	foreTreeQ.forEach(function(elem) {
-		elem.draw();
-		elem.update();
-	});
 	ground.draw();
 }
 
