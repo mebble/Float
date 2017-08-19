@@ -1,8 +1,8 @@
-var Ground = function(x, y, color) {
-	this.x = x;
-	this.y = y;
+var Ground = function(config) {
+	this.x = config.x || 0;
+	this.y = config.y || (5/6) * canvasHeight;
+	this.color = config.color || "#000";
 	this.extraBleed = 10;
-	this.color = color;
 };
 Ground.prototype.draw = function() {
 	noStroke();

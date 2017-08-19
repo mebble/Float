@@ -1,9 +1,9 @@
-var Wind = function(x, y, force) {
-	this.x = x;
-	this.y = y;
+var Wind = function(config) {
+	this.x = config.x;
+	this.y = config.y;
+	this.force = config.force || 0.15;
+	this.isActive = config.isActive || true;
 	this.speed = 1.5 * scrollSpeed + 2;
-	this.force = force;
-	this.active = true;
 	this.color = "#fff";
 };
 Wind.prototype.draw = function() {

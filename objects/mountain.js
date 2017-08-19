@@ -1,25 +1,25 @@
-var Mountain = function(peakX, baseY, width, height) {
-	this.x = 0;
-	this.speed = 0.2 * scrollSpeed;
-	this.width = width;
-	this.height = height;
+var Mountain = function(config) {
+	this.x = 0; //ugly hack :(
+	this.speed = config.speed || 0.2 * scrollSpeed;
+	this.width = config.width;
+	this.height = config.height;
 	this.corners = {
-		peak: [peakX, baseY - this.height],
-		left: [peakX - this.width/2, baseY],
-		middle: [peakX, baseY],
-		right: [peakX + this.width/2, baseY]
+		peak: [config.peakX, config.baseY - this.height],
+		left: [config.peakX - this.width/2, config.baseY],
+		middle: [config.peakX, config.baseY],
+		right: [config.peakX + this.width/2, config.baseY]
 	};
 	this.snow = this.calcSnow(this.corners);
-	this.snowCol = "#ffffff";
-	this.leftShade = color(232, 167, 130);
-	this.rightShade = color(194, 149, 128);
+	this.snowCol = config.snowCol || "#ffffff";
+	this.leftShade = config.leftShade || color(232, 167, 130);
+	this.rightShade = config.rightShade || color(194, 149, 128);
 };
 Mountain.prototype.draw = function() {
 	noStroke();
 
 	push();
 	{
-		translate(this.x, 0);
+		translate(this.x, 0);  //ugly hack :(
 		/* mountain */
 		beginShape(TRIANGLE_STRIP);
 		fill(this.leftShade);
@@ -90,5 +90,5 @@ Mountain.prototype.calcSnow = function(m) {
 	};
 };
 Mountain.prototype.update = function() {
-	this.x -= this.speed;
+	this.x -= this.speed; //ugly hack :(
 };

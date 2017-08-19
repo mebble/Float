@@ -1,12 +1,12 @@
-var Cloud = function(x, y, numParts, size) {
-	this.x = x;
-	this.y = y;
-	this.numParts = numParts;
-	this.size = size;
+var Cloud = function(config) {
+	this.x = config.x;
+	this.y = config.y;
+	this.numParts = config.numParts;
+	this.size = config.size;
+	this.color = config.color || color("#F2F2F2");
+	this.width = config.width || 100;
+	this.height = config.height || 50;
 
-	this.color = color("#F2F2F2");
-	this.width = 100;
-	this.height = 50;
 	this.cloudParts = [];
 	/*
 	Linear function of this.size and scrollSpeed:

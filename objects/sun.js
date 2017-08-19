@@ -1,7 +1,7 @@
-var Sun = function(x, y, size) {
-	this.x = x;
-	this.y = y;
-	this.size = size;
+var Sun = function(config) {
+	this.x = config.x || canvasWidth/2;
+	this.y = config.y || convasHeight/2;
+	this.size = config.size;
 	this.scale = 1;
 	this.freq = 4;
 	this.amp = 0.1;
