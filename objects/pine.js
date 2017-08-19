@@ -3,6 +3,7 @@ var Pine = function(config) {
 	this.topY = config.topY;
 	this.speed = config.speed || scrollSpeed;
 	this.color = config.color || "#000";
+	// !refactor! ground.y is from external scope
 	this.width = ((0 - 200)/(ground.y - 0)) * (this.topY - 0) + 200;
 	this.height = ground.y - this.topY;
 };
