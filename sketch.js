@@ -15,13 +15,22 @@ function setup() {
 	canvas = createCanvas(canvasWidth, canvasHeight);
 	centerCanvas();
 	angleMode(DEGREES);
+	
 	ground = new Ground((5/6) * canvasHeight, "#000");
-
-	initQueue(foreTreeQ, {
+	initQueue({
+		queue: foreTreeQ,
 		initNum: 25,
 		xStart: 0,
 		xStep: 20,
-		classType: Pine
+		classType: Pine,
+		config: {
+			topX: 0,
+			topY: random(280, 330),
+			color: "#0B936E"
+		}
+	}, function(config) {
+		config.topX += qParams.xStep;
+		config.topY = random(280, 330);
 	});
 }
 
