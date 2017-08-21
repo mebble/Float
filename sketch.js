@@ -21,16 +21,17 @@ function setup() {
 	});
 	initQueue({
 		queue: foreTreeQ,
-		initNum: 25,
+		initNum: 30,
 		xStep: 20,
-		classType: Pine
-	}, {
-		topX: 0,
-		topY: random(280, 330),
-		color: "#0B936E"
-	}, function(config, params) {
-		config.topX += params.xStep;
-		config.topY = random(400, 430);
+		classType: Pine,
+		config: {
+			topX: 0,
+			topY: random(ground.y - 100, ground.y - 50),
+			color: "#0B936E"
+		}
+	}, function(params) {
+		params.config.topX += params.xStep;
+		params.config.topY = random(ground.y - 100, ground.y - 50);
 	});
 }
 
@@ -40,6 +41,19 @@ function draw() {
 	foreTreeQ.forEach(function(elem) {
 		elem.draw();
 		elem.update();
+	});
+
+	pushToCanvas({
+		queue: foreTreeQ,
+		classType: Pine,
+		config: {
+			topX: canvasWidth + 10,
+			topY: random(ground.y - 100, ground.y - 50),
+			color: "#0B936E"
+		}
+	}, function(p) {
+		var lastPine = p.queue[p.queue.length-1];
+		return lastPine.topX + lastPine.width/2 < canvasWidth + 10;
 	});
 }
 
