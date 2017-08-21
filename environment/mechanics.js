@@ -1,4 +1,4 @@
-function initQueue(params, config, modifyConfig) {
+function initQueue(params, modifyConfig) {
 	/**
 	 * initQueue(params, config, modifyConfig);
 	 * 'params' contains properties of the queue.
@@ -15,8 +15,8 @@ function initQueue(params, config, modifyConfig) {
 	 * of the params object.
 	 */
 	for (var i = 0; i < params.initNum; i++) {
-		params.queue.push(new params.classType(config));
-		modifyConfig(config, params);
+		params.queue.push(new params.classType(params.config));
+		modifyConfig(params);
 	}
 }
 

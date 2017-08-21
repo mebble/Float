@@ -23,14 +23,15 @@ function setup() {
 		queue: foreTreeQ,
 		initNum: 30,
 		xStep: 20,
-		classType: Pine
-	}, {
-		topX: 0,
-		topY: random(ground.y - 100, ground.y - 50),
-		color: "#0B936E"
-	}, function(config, params) {
-		config.topX += params.xStep;
-		config.topY = random(ground.y - 100, ground.y - 50);
+		classType: Pine,
+		config: {
+			topX: 0,
+			topY: random(ground.y - 100, ground.y - 50),
+			color: "#0B936E"
+		}
+	}, function(params) {
+		params.config.topX += params.xStep;
+		params.config.topY = random(ground.y - 100, ground.y - 50);
 	});
 }
 
