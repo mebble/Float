@@ -22,7 +22,7 @@ function setup() {
 	initQueue({
 		queue: foreTreeQ,
 		initNum: 30,
-		xStep: 20,
+		xStep: 30,
 		classType: Pine,
 		config: {
 			topX: 0,
