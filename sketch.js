@@ -46,7 +46,7 @@ function draw() {
 	enterStage({
 		queue: foreTreeQ,
 		classType: Pine,
-		enterX: canvasWidth + 10,
+		enterX: canvasWidth + 100,
 		config: {
 			topX: canvasWidth + 10,
 			topY: random(ground.y - 100, ground.y - 50),
