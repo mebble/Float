@@ -18,7 +18,7 @@ function initQueue(params, modifyConfig) {
 	}
 }
 
-function pushToCanvas(params, pushGranted) {
+function enterStage(params, pushGranted) {
 	if (pushGranted(params)) {
 		params.queue.push(new params.classType(params.config));
 	}

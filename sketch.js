@@ -43,7 +43,7 @@ function draw() {
 		elem.update();
 	});
 
-	pushToCanvas({
+	enterStage({
 		queue: foreTreeQ,
 		classType: Pine,
 		config: {
