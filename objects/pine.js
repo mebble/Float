@@ -3,7 +3,9 @@ var Pine = function(config) {
 	this.topY = config.topY;
 	this.speed = config.speed || scrollSpeed;
 	this.color = config.color || "#000";
-	this.width = ((0 - 200)/(ground.y - 0)) * (this.topY - 0) + 200;
+	// !refactor! ground.y is from external scope
+	// !refactor! number 300 which affects linear eq slope is hard coded
+	this.width = ((0 - 400)/(ground.y - 0)) * (this.topY - 0) + 400;
 	this.height = ground.y - this.topY;
 };
 Pine.prototype.draw = function() {
