@@ -22,7 +22,7 @@ function setup() {
 	initQueue({
 		queue: foreTreeQ,
 		initNum: 30,
-		xStep: 25,
+		xStep: 30,
 		classType: Pine,
 		config: {
 			topX: 0,
@@ -46,6 +46,7 @@ function draw() {
 	enterStage({
 		queue: foreTreeQ,
 		classType: Pine,
+		enterX: canvasWidth + 10,
 		config: {
 			topX: canvasWidth + 10,
 			topY: random(ground.y - 100, ground.y - 50),
@@ -53,7 +54,13 @@ function draw() {
 		}
 	}, function(p) {
 		var lastPine = p.queue[p.queue.length-1];
-		return lastPine.topX + lastPine.width/2 < canvasWidth + 10;
+		return lastPine.topX + lastPine.width/2 < p.enterX;
+	});
+	leaveStage({
+		queue: foreTreeQ,
+		leaveX: -100
+	}, function(p) {
+		return p.queue[0].topX < p.leaveX;
 	});
 }
 

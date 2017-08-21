@@ -18,8 +18,14 @@ function initQueue(params, modifyConfig) {
 	}
 }
 
-function enterStage(params, pushGranted) {
-	if (pushGranted(params)) {
+function enterStage(params, enterGranted) {
+	if (enterGranted(params)) {
 		params.queue.push(new params.classType(params.config));
+	}
+}
+
+function leaveStage(params, leaveGranted) {
+	if (leaveGranted(params)) {
+		params.queue.shift();
 	}
 }
