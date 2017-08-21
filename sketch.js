@@ -48,12 +48,14 @@ function draw() {
 		classType: Pine,
 		enterX: canvasWidth + 100,
 		config: {
-			topX: canvasWidth + 10,
+			topX: null, //hack below
 			topY: random(ground.y - 100, ground.y - 50),
 			color: "#0B936E"
 		}
 	}, function(p) {
 		var lastPine = p.queue[p.queue.length-1];
+		// ugly hack to access enterX from config
+		p.config.topX = p.enterX;
 		return lastPine.topX + lastPine.width/2 < p.enterX;
 	});
 	leaveStage({
