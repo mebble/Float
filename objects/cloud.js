@@ -6,15 +6,9 @@ var Cloud = function(config) {
 	this.color = config.color || "#F2F2F2";
 	this.width = config.width || 100;
 	this.height = config.height || 50;
-
+	this.speed = map(this.size, 0.5, 1.5, 0.75, 1.5) * scrollSpeed;
 	this.cloudParts = [];
-	/*
-	Linear function of this.size and scrollSpeed:
-	speed = (slope * this.size + minSpeed) * scrollSpeed
-	!refactor!
-	*/
-	this.speed = -scrollSpeed/2 + (-3/5) * (this.size + 0.1) + 0.1;
-
+	
 	//run on init
 	this.initParts();
 };

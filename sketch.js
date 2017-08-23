@@ -27,7 +27,8 @@ function setup() {
 		config: {
 			topX: 0,
 			topY: random(ground.y - 100, ground.y - 50),
-			color: "#0B936E"
+			color: "#0B936E",
+			baseY: (5/6)*canvasHeight
 		}
 	}, function(params) {
 		params.config.topX += params.xStep;
@@ -50,11 +51,11 @@ function draw() {
 		config: {
 			topX: null, //hack below
 			topY: random(ground.y - 100, ground.y - 50),
-			color: "#0B936E"
+			color: "#0B936E",
+			baseY: (5/6)*canvasHeight
 		}
 	}, function(p) {
-		var lastPine = p.queue[p.queue.length-1];
-		// ugly hack to access enterX from config
+		var lastPine = p.queue[p.queue.length-1]; // ugly hack to access enterX from config
 		p.config.topX = p.enterX;
 		return lastPine.topX + lastPine.width/2 < p.enterX;
 	});
