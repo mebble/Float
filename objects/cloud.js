@@ -50,6 +50,5 @@ Cloud.prototype.draw = function() {
 	pop();
 };
 Cloud.prototype.update = function() {
-	//!refactor! to allow -=
-    this.x += this.speed;
+    this.x -= this.speed;
 };
