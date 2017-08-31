@@ -1,9 +1,3 @@
-/* GLOBALS */
-var canvas;
-var canvasWidth = 600;
-var canvasHeight = 600;
-var scrollSpeed = 1;
-
 /* CONSTANTS */
 const SHADOW = "rgba(130, 130, 130, 10)";
 const SHADOW_OFF = 2;
@@ -19,36 +13,18 @@ function setup() {
 	ground = new Ground({
 		color: "#1CE29F"
 	});
-	initQueue({
-		queue: backTreeQ,
-		initNum: 30,
-		xStep: 30,
-		classType: Pine,
-		config: {
-			topX: 0,
-			topY: random(ground.y - 130, ground.y - 80),
-			color: "#18B978",
-			baseY: ground.y,
-			speed: 0.9 * scrollSpeed
-		}
-	}, function(p) {
-		p.config.topX += p.xStep;
-		p.config.topY = random(ground.y - 130, ground.y - 80);
+	initQueue(foreTreeQ, {
+		baseY: ground.y,
+		topX: 0,
+		topY: random(this.baseY - 100, this.baseY - 50),
+		color: "#0B936E",
 	});
-	initQueue({
-		queue: foreTreeQ,
-		initNum: 30,
-		xStep: 30,
-		classType: Pine,
-		config: {
-			topX: 0,
-			topY: random(ground.y - 100, ground.y - 50),
-			color: "#0B936E",
-			baseY: ground.y
-		}
-	}, function(p) {
-		p.config.topX += p.xStep;
-		p.config.topY = random(ground.y - 100, ground.y - 50);
+	initQueue(backTreeQ, {
+		baseY: ground.y,
+		topX: 0,
+		topY: random(this.baseY - 130, this.baseY - 80),
+		color: "#18B978",
+		scrollSpeed: 0.9 * scrollSpeed
 	});
 }
 
@@ -57,49 +33,21 @@ function draw() {
 	ground.draw();
 	drawAll([backTreeQ, foreTreeQ]);
 	updateAll([backTreeQ, foreTreeQ]);
-	enterStage({
-		queue: backTreeQ,
-		classType: Pine,
-		enterX: canvasWidth + 100,
-		config: {
-			topX: null,
-			topY: random(ground.y - 130, ground.y - 80),
-			color: "#18B978",
-			baseY: ground.y,
-			speed: 0.9 * scrollSpeed
-		}
-	}, function(p) {
-		var lastPine = p.queue[p.queue.length-1];
-		p.config.topX = p.enterX; // ugly hack
-		return lastPine.topX + lastPine.width/2 < p.enterX;
+	enterStage(foreTreeQ, {
+		baseY: ground.y,
+		topX: canvasWidth + 100,
+		topY: random(this.baseY - 100, this.baseY - 50),
+		color: "#0B936E"
 	});
-	enterStage({
-		queue: foreTreeQ,
-		classType: Pine,
-		enterX: canvasWidth + 10,
-		config: {
-			topX: canvasWidth + 10,
-			topY: random(ground.y - 100, ground.y - 50),
-			color: "#0B936E",
-			baseY: ground.y
-		}
-	}, function(p) {
-		var lastPine = p.queue[p.queue.length-1];
-		p.config.topX = p.enterX; // ugly hack to access enterX from config
-		return lastPine.topX + lastPine.width/2 < p.enterX;
+	enterStage(backTreeQ, {
+		baseY: ground.y,
+		topX: canvasWidth + 100,
+		topY: random(this.baseY - 130, this.baseY - 80),
+		color: "#18B978",
+		speed: 0.9 * scrollSpeed
 	});
-	leaveStage({
-		queue: foreTreeQ,
-		leaveX: -100
-	}, function(p) {
-		return p.queue[0].topX < p.leaveX;
-	});
-	leaveStage({
-		queue: backTreeQ,
-		leaveX: -100
-	}, function(p) {
-		return p.queue[0].topX < p.leaveX;
-	});
+	leaveStage(foreTreeQ);
+	leaveStage(backTreeQ);
 }
 
 function centerCanvas() {
