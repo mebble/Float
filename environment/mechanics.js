@@ -29,3 +29,19 @@ function leaveStage(params, leaveGranted) {
 		params.queue.shift();
 	}
 }
+
+function drawAll(queueArray) {
+	queueArray.forEach(function(queue) {
+		queue.forEach(function(elem) {
+			elem.draw();
+		});
+	});
+}
+
+function updateAll(queueArray) {
+	queueArray.forEach(function(queue) {
+		queue.forEach(function(elem) {
+			elem.update();
+		});
+	});
+}

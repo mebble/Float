@@ -55,14 +55,8 @@ function setup() {
 function draw() {
 	background("#4cb5f5");
 	ground.draw();
-	backTreeQ.forEach(function(elem) {
-		elem.draw();
-		elem.update();
-	});
-	foreTreeQ.forEach(function(elem) {
-		elem.draw();
-		elem.update();
-	});
+	drawAll([backTreeQ, foreTreeQ]);
+	updateAll([backTreeQ, foreTreeQ]);
 	enterStage({
 		queue: backTreeQ,
 		classType: Pine,
