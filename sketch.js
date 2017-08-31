@@ -23,7 +23,7 @@ function setup() {
 		topX: 0,
 		topY: random(ground.y - 130, ground.y - 80),
 		color: "#18B978",
-		scrollSpeed: 0.9 * scrollSpeed,
+		speed: 0.9 * scrollSpeed,
 		baseY: ground.y
 	});
 }
