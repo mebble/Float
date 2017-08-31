@@ -20,6 +20,22 @@ function setup() {
 		color: "#1CE29F"
 	});
 	initQueue({
+		queue: backTreeQ,
+		initNum: 30,
+		xStep: 30,
+		classType: Pine,
+		config: {
+			topX: 0,
+			topY: random(ground.y - 130, ground.y - 80),
+			color: "#18B978",
+			baseY: ground.y,
+			speed: 0.9 * scrollSpeed
+		}
+	}, function(p) {
+		p.config.topX += p.xStep;
+		p.config.topY = random(ground.y - 130, ground.y - 80);
+	});
+	initQueue({
 		queue: foreTreeQ,
 		initNum: 30,
 		xStep: 30,
@@ -28,22 +44,41 @@ function setup() {
 			topX: 0,
 			topY: random(ground.y - 100, ground.y - 50),
 			color: "#0B936E",
-			baseY: (5/6)*canvasHeight
+			baseY: ground.y
 		}
-	}, function(params) {
-		params.config.topX += params.xStep;
-		params.config.topY = random(ground.y - 100, ground.y - 50);
+	}, function(p) {
+		p.config.topX += p.xStep;
+		p.config.topY = random(ground.y - 100, ground.y - 50);
 	});
 }
 
 function draw() {
 	background("#4cb5f5");
 	ground.draw();
+	backTreeQ.forEach(function(elem) {
+		elem.draw();
+		elem.update();
+	});
 	foreTreeQ.forEach(function(elem) {
 		elem.draw();
 		elem.update();
 	});
-
+	enterStage({
+		queue: backTreeQ,
+		classType: Pine,
+		enterX: canvasWidth + 100,
+		config: {
+			topX: null,
+			topY: random(ground.y - 130, ground.y - 80),
+			color: "#18B978",
+			baseY: ground.y,
+			speed: 0.9 * scrollSpeed
+		}
+	}, function(p) {
+		var lastPine = p.queue[p.queue.length-1];
+		p.config.topX = p.enterX; // ugly hack
+		return lastPine.topX + lastPine.width/2 < p.enterX;
+	});
 	enterStage({
 		queue: foreTreeQ,
 		classType: Pine,
@@ -52,15 +87,21 @@ function draw() {
 			topX: null, //hack below
 			topY: random(ground.y - 100, ground.y - 50),
 			color: "#0B936E",
-			baseY: (5/6)*canvasHeight
+			baseY: ground.y
 		}
 	}, function(p) {
-		var lastPine = p.queue[p.queue.length-1]; // ugly hack to access enterX from config
-		p.config.topX = p.enterX;
+		var lastPine = p.queue[p.queue.length-1];
+		p.config.topX = p.enterX; // ugly hack to access enterX from config
 		return lastPine.topX + lastPine.width/2 < p.enterX;
 	});
 	leaveStage({
 		queue: foreTreeQ,
+		leaveX: -100
+	}, function(p) {
+		return p.queue[0].topX < p.leaveX;
+	});
+	leaveStage({
+		queue: backTreeQ,
 		leaveX: -100
 	}, function(p) {
 		return p.queue[0].topX < p.leaveX;
