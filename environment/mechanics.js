@@ -1,46 +1,37 @@
-function initQueue(params, modifyConfig) {
+function initQueue(Queue, config) {
 	/**
-	 * initQueue:
-	 * 'params' contains properties of the queue.
-	 * 'params.config' contains properties of each element of the queue.
-	 * 'modifyConfig' modifies the config object for the next queue element.
+	 * @param {Object} Queue - contains properties of the queue.
+	 * @param {Object} config -  contains properties of each element of the queue.
 	 */
-
-	/**
-	 * modifyConfig:
-	 * Modifies the params.config object based on the properties
-	 * of the params object.
-	 */
-	 
-	for (var i = 0; i < params.initNum; i++) {
-		params.queue.push(new params.classType(params.config));
-		modifyConfig(params);
+	for (var i = 0; i < Queue.initNum; i++) {
+		Queue.queue.push(new Queue.classType(config));
+		Queue.modifyConfig(config);
 	}
 }
 
-function enterStage(params, enterGranted) {
-	if (enterGranted(params)) {
-		params.queue.push(new params.classType(params.config));
+function enterStage(Queue, config) {
+	if (Queue.enterGranted()) {
+		Queue.queue.push(new Queue.classType(config));
 	}
 }
 
-function leaveStage(params, leaveGranted) {
-	if (leaveGranted(params)) {
-		params.queue.shift();
+function leaveStage(Queue) {
+	if (Queue.leaveGranted()) {
+		Queue.queue.shift();
 	}
 }
 
-function drawAll(queueArray) {
-	queueArray.forEach(function(queue) {
-		queue.forEach(function(elem) {
+function drawAll(Queues) {
+	Queues.forEach(function(Queue) {
+		Queue.queue.forEach(function(elem) {
 			elem.draw();
 		});
 	});
 }
 
-function updateAll(queueArray) {
-	queueArray.forEach(function(queue) {
-		queue.forEach(function(elem) {
+function updateAll(Queues) {
+	Queues.forEach(function(Queue) {
+		Queue.queue.forEach(function(elem) {
 			elem.update();
 		});
 	});
