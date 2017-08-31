@@ -13,18 +13,18 @@ function setup() {
 	ground = new Ground({
 		color: "#1CE29F"
 	});
-	initQueue(foreTreeQ, {
-		baseY: ground.y,
+	initQueue(foreTreeQ, {	
 		topX: 0,
-		topY: random(this.baseY - 100, this.baseY - 50),
+		topY: random(ground.y - 100, ground.y - 50),
 		color: "#0B936E",
+		baseY: ground.y
 	});
 	initQueue(backTreeQ, {
-		baseY: ground.y,
 		topX: 0,
-		topY: random(this.baseY - 130, this.baseY - 80),
+		topY: random(ground.y - 130, ground.y - 80),
 		color: "#18B978",
-		scrollSpeed: 0.9 * scrollSpeed
+		scrollSpeed: 0.9 * scrollSpeed,
+		baseY: ground.y
 	});
 }
 
@@ -34,17 +34,17 @@ function draw() {
 	drawAll([backTreeQ, foreTreeQ]);
 	updateAll([backTreeQ, foreTreeQ]);
 	enterStage(foreTreeQ, {
-		baseY: ground.y,
 		topX: canvasWidth + 100,
-		topY: random(this.baseY - 100, this.baseY - 50),
-		color: "#0B936E"
+		topY: random(ground.y - 100, ground.y - 50),
+		color: "#0B936E",
+		baseY: ground.y
 	});
 	enterStage(backTreeQ, {
-		baseY: ground.y,
 		topX: canvasWidth + 100,
-		topY: random(this.baseY - 130, this.baseY - 80),
+		topY: random(ground.y - 130, ground.y - 80),
 		color: "#18B978",
-		speed: 0.9 * scrollSpeed
+		speed: 0.9 * scrollSpeed,
+		baseY: ground.y
 	});
 	leaveStage(foreTreeQ);
 	leaveStage(backTreeQ);
