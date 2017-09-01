@@ -1,6 +1,5 @@
 var foreTreeQ = {
 	queue: [],
-	initNum: 30,
 	xStep: 30,
 	classType: Pine,
 	enterX: canvasWidth + 100,
@@ -22,7 +21,6 @@ var foreTreeQ = {
 };
 var backTreeQ = {
 	queue: [],
-	initNum: 30,
 	xStep: 30,
 	classType: Pine,
 	enterX: canvasWidth + 100,
