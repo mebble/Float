@@ -10,7 +10,7 @@ function leaveStage(Queue) {
 	}
 }
 
-function drawAll(Queues) {
+function drawAllQueues(Queues) {
 	Queues.forEach(function(Queue) {
 		Queue.queue.forEach(function(elem) {
 			elem.draw();
@@ -18,7 +18,7 @@ function drawAll(Queues) {
 	});
 }
 
-function updateAll(Queues) {
+function updateAllQueues(Queues) {
 	Queues.forEach(function(Queue) {
 		Queue.queue.forEach(function(elem) {
 			elem.update();

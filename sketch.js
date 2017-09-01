@@ -31,8 +31,8 @@ function setup() {
 function draw() {
 	background("#4cb5f5");
 	ground.draw();
-	drawAll([backTreeQ, foreTreeQ]);
-	updateAll([backTreeQ, foreTreeQ]);
+	drawAllQueues([backTreeQ, foreTreeQ]);
+	updateAllQueues([backTreeQ, foreTreeQ]);
 	enterStage(foreTreeQ, {
 		topX: foreTreeQ.enterX,
 		topY: random(ground.y - 100, ground.y - 50),
