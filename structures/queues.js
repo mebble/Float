@@ -5,9 +5,12 @@ var foreTreeQ = {
 	classType: Pine,
 	enterX: canvasWidth + 100,
 	leaveX: -100,
-	modifyConfig: function(config) {
-		config.topX += this.xStep;
-		config.topY = random(config.baseY - 100, config.baseY - 50);
+	init: function(config) {
+		while (config.topX < this.enterX) {
+			this.queue.push(new this.classType(config));
+			config.topX += this.xStep;
+			config.topY = random(config.baseY - 100, config.baseY - 50);
+		}
 	},
 	enterGranted: function() {
 		var lastPine = this.queue[this.queue.length - 1];
@@ -24,9 +27,12 @@ var backTreeQ = {
 	classType: Pine,
 	enterX: canvasWidth + 100,
 	leaveX: -100,
-	modifyConfig: function(config) {
-		config.topX += this.xStep;
-		config.topY = random(config.baseY - 130, config.baseY - 80);
+	init: function(config) {
+		while (config.topX < this.enterX) {
+			this.queue.push(new this.classType(config));
+			config.topX += this.xStep;
+			config.topY = random(config.baseY - 130, config.baseY - 80);
+		}
 	},
 	enterGranted: function() {
 		var lastPine = this.queue[this.queue.length - 1];
