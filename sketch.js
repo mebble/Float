@@ -1,7 +1,3 @@
-/* CONSTANTS */
-const SHADOW = "rgba(130, 130, 130, 10)";
-const SHADOW_OFF = 2;
-
 /* OBJECTS */
 var ground;
 
@@ -10,6 +6,7 @@ function setup() {
 	centerCanvas();
 	angleMode(DEGREES);
 
+	allQueues = [backTreeQ, backCloudQ, foreTreeQ, foreCloudQ];
 	ground = new Ground({
 		color: "#1CE29F"
 	});
@@ -31,8 +28,8 @@ function setup() {
 function draw() {
 	background("#4cb5f5");
 	ground.draw();
-	drawAllQueues([backTreeQ, foreTreeQ]);
-	updateAllQueues([backTreeQ, foreTreeQ]);
+	drawAllQueues(allQueues);
+	updateAllQueues(allQueues);
 	enterStage(foreTreeQ, {
 		topX: foreTreeQ.enterX,
 		topY: random(ground.y - 100, ground.y - 50),
@@ -46,13 +43,20 @@ function draw() {
 		speed: 0.9 * scrollSpeed,
 		baseY: ground.y
 	});
+	enterStage(foreCloudQ, {
+		x: foreCloudQ.enterX,
+		y: random(0, 400),
+		numParts: floor(random(1, 5)),
+		size: random(1, 1.5)
+	});
+	enterStage(backCloudQ, {
+		x: backCloudQ.enterX,
+		y: random(0, 400),
+		numParts: floor(random(1, 8)),
+		size: random(0.5, 1)
+	});
 	leaveStage(foreTreeQ);
 	leaveStage(backTreeQ);
-}
-
-function centerCanvas() {
-	var x, y;
-	x = (windowWidth - canvasWidth) / 2;
-	y = (windowHeight - canvasHeight) / 2;
-	canvas.position(x, y);
+	leaveStage(foreCloudQ);
+	leaveStage(backCloudQ);
 }

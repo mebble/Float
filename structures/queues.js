@@ -41,10 +41,35 @@ var backTreeQ = {
 	}
 };
 var foreCloudQ = {
-	queue: []
+	queue: [],
+	classType: Cloud,
+	enterX: canvasWidth + 300,
+	leaveX: -300,
+	enterGranted: function() {
+		return (frameCount % 500 === 0);
+	},
+	leaveGranted: function() {
+		//!remove! when this.init() is made
+		if (this.queue[0] == undefined) {
+			return false;
+		}
+		return this.queue[0].x < this.leaveX;
+	}
 };
 var backCloudQ = {
-	queue: []
+	queue: [],
+	classType: Cloud,
+	enterX: canvasWidth + 300,
+	leaveX: -300,
+	enterGranted: function() {
+		return (frameCount % 500 === 0);
+	},
+	leaveGranted: function() {
+		if (this.queue[0] == undefined) {
+			return false;
+		}
+		return this.queue[0].x < this.leaveX;
+	}
 };
 var windQ = {
 	queue: []

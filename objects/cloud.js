@@ -4,8 +4,10 @@ var Cloud = function(config) {
 	this.numParts = config.numParts;
 	this.size = config.size;
 	this.color = config.color || "#F2F2F2";
-	this.width = config.width || 100;
-	this.height = config.height || 50;
+	//raw width and height. Size is managed by scaling with this.size
+	//!change! make width and height Cloud attributes
+	this.width = 100;
+	this.height = 50;
 	this.speed = map(this.size, 0.5, 1.5, 0.75, 1.5) * scrollSpeed;
 	this.cloudParts = [];
 	
