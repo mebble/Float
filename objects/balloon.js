@@ -35,7 +35,7 @@ Balloon.prototype.draw = function() {
 		
 		for (var i = -1; i <= 1; i++) {
 			stroke(SHADOW);
-			line(SHADOW_OFF + i * (basketW/3), 0, SHADOW_OFF + i * (basketW/3), basketY)
+			line(SHADOW_OFF + i * (basketW/3), 0, SHADOW_OFF + i * (basketW/3), basketY);
 			stroke(this.color.rope);
 			line(0 + i * (basketW/3), 0, 0 + i * (basketW/3), basketY);
 		}
@@ -57,6 +57,9 @@ Balloon.prototype.draw = function() {
 		//basket
 		fill(this.color.basket);
 		rect(basketX, basketY, basketW, basketH, 3);
+
+		//reset rectMode
+		rectMode(CORNER);
 	}
 	pop();	
 };

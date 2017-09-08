@@ -46,7 +46,8 @@ var foreCloudQ = {
 	enterX: canvasWidth + 300,
 	leaveX: -300,
 	enterGranted: function() {
-		return (frameCount % 500 === 0);
+		//!refactor!! push frequency attribute
+		return ((frameCount % 500) == 0);
 	},
 	leaveGranted: function() {
 		//!remove! when this.init() is made
@@ -62,7 +63,7 @@ var backCloudQ = {
 	enterX: canvasWidth + 300,
 	leaveX: -300,
 	enterGranted: function() {
-		return (frameCount % 500 === 0);
+		return ((frameCount % 500) == 0);
 	},
 	leaveGranted: function() {
 		if (this.queue[0] == undefined) {

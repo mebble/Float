@@ -24,10 +24,10 @@ Cloud.prototype.initParts = function() {
 	}
 };
 Cloud.prototype.draw = function() {
-	rectMode(CENTER);
 	noStroke();
 	push();
 	{
+		rectMode(CENTER);
 		translate(this.x, this.y);
 		scale(this.size);
 		for (var i = 0; i < this.cloudParts.length; i++) {
@@ -43,6 +43,9 @@ Cloud.prototype.draw = function() {
 			fill(this.color);
 			rect(px, py, pw, ph, corner);
 		}
+
+		//reset rectMode
+		rectMode(CORNER);
 		/*
 		//debugger:
 		stroke(255, 0, 0);

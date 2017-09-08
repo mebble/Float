@@ -1,6 +1,3 @@
-/* OBJECTS */
-var ground;
-
 function setup() {
 	canvas = createCanvas(canvasWidth, canvasHeight);
 	centerCanvas();
@@ -45,13 +42,13 @@ function draw() {
 	});
 	enterStage(foreCloudQ, {
 		x: foreCloudQ.enterX,
-		y: random(0, 400),
+		y: random(0, ground.y - 130),
 		numParts: floor(random(1, 5)),
 		size: random(1, 1.5)
 	});
 	enterStage(backCloudQ, {
 		x: backCloudQ.enterX,
-		y: random(0, 400),
+		y: random(0, ground.y - 130),
 		numParts: floor(random(1, 8)),
 		size: random(0.5, 1)
 	});
