@@ -7,6 +7,8 @@ var foreTreeQ = {
 		var xStep = 30;
 		while (config.topX < this.enterX) {
 			this.queue.push(new this.classType(config));
+
+			//mutate config
 			config.topX += xStep;
 			config.topY = random(config.baseY - 100, config.baseY - 50);
 		}
@@ -28,6 +30,8 @@ var backTreeQ = {
 		var xStep = 30;
 		while (config.topX < this.enterX) {
 			this.queue.push(new this.classType(config));
+
+			//mutate config
 			config.topX += xStep;
 			config.topY = random(config.baseY - 130, config.baseY - 80);
 		}
@@ -45,15 +49,23 @@ var foreCloudQ = {
 	classType: Cloud,
 	enterX: canvasWidth + 300,
 	leaveX: -300,
+	init: function(config) {
+		var xStep = 200;
+		while (config.x < this.enterX) {
+			this.queue.push(new this.classType(config));
+
+			//mutate config
+			config.x += xStep;
+			config.y = random(0, ground.y - 130);
+			config.numParts = floor(random(1, 5));
+			config.size = random(1, 1.5);
+		}
+	},
 	enterGranted: function() {
 		//!refactor!! push frequency attribute
 		return ((frameCount % 500) == 0);
 	},
 	leaveGranted: function() {
-		//!remove! when this.init() is made
-		if (this.queue[0] == undefined) {
-			return false;
-		}
 		return this.queue[0].x < this.leaveX;
 	}
 };
@@ -62,13 +74,22 @@ var backCloudQ = {
 	classType: Cloud,
 	enterX: canvasWidth + 300,
 	leaveX: -300,
+	init: function(config) {
+		var xStep = 150;
+		while (config.x < this.enterX) {
+			this.queue.push(new this.classType(config));
+
+			//mutate config
+			config.x += xStep;
+			config.y = random(0, ground.y - 130);
+			config.numParts = floor(random(1, 8));
+			config.size = random(0.5, 1);
+		}
+	},
 	enterGranted: function() {
 		return ((frameCount % 500) == 0);
 	},
 	leaveGranted: function() {
-		if (this.queue[0] == undefined) {
-			return false;
-		}
 		return this.queue[0].x < this.leaveX;
 	}
 };

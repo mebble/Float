@@ -21,6 +21,18 @@ function setup() {
 		speed: 0.9 * scrollSpeed,
 		baseY: ground.y
 	});
+	foreCloudQ.init({
+		x: 0,
+		y: random(0, ground.y - 130),
+		numParts: floor(random(1, 5)),
+		size: random(1, 1.5)
+	});
+	backCloudQ.init({
+		x: 0,
+		y: random(0, ground.y - 130),
+		numParts: floor(random(1, 8)),
+		size: random(0.5, 1)
+	});
 }
 
 function draw() {
