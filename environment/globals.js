@@ -7,6 +7,7 @@ var scrollSpeed = 1;
 var allQueues = [];
 var canvas;
 var ground;
+var balloon;
 
 /* CONSTANTS */
 const SHADOW = "rgba(130, 130, 130, 10)";

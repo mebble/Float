@@ -7,6 +7,7 @@ function setup() {
 	ground = new Ground({
 		color: "#1CE29F"
 	});
+	balloon = new Balloon({});
 	foreTreeQ.init({
 		topX: 0,
 		topY: random(ground.y - 100, ground.y - 50),
@@ -24,9 +25,18 @@ function setup() {
 
 function draw() {
 	background("#4cb5f5");
+
+	/* draw objects in order */
 	ground.draw();
-	drawAllQueues(allQueues);
+	drawQueue(backTreeQ);
+	drawQueue(backCloudQ);
+	drawQueue(foreTreeQ);
+	balloon.draw();
+	drawQueue(foreCloudQ);
+
+	/* update objects*/
 	updateAllQueues(allQueues);
+	balloon.update();
 	enterStage(foreTreeQ, {
 		topX: foreTreeQ.enterX,
 		topY: random(ground.y - 100, ground.y - 50),

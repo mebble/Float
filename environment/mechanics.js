@@ -17,11 +17,9 @@ function leaveStage(Queue) {
 	}
 }
 
-function drawAllQueues(Queues) {
-	Queues.forEach(function(Queue) {
-		Queue.queue.forEach(function(elem) {
-			elem.draw();
-		});
+function drawQueue(Queue) {
+	Queue.queue.forEach(function(elem) {
+		elem.draw();
 	});
 }
 
