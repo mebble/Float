@@ -18,6 +18,9 @@ var foreTreeQ = {
 		return lastPine.topX + lastPine.width/2 < this.enterX;
 	},
 	leaveGranted: function() {
+		if (this.queue[0] == undefined) {
+			return false;
+		}
 		return this.queue[0].topX < this.leaveX;
 	}
 };
@@ -41,6 +44,9 @@ var backTreeQ = {
 		return lastPine.topX + lastPine.width/2 < this.enterX;
 	},
 	leaveGranted: function() {
+		if (this.queue[0] == undefined) {
+			return false;
+		}
 		return this.queue[0].topX < this.leaveX;
 	}
 };
@@ -49,6 +55,7 @@ var foreCloudQ = {
 	classType: Cloud,
 	enterX: canvasWidth + 300,
 	leaveX: -300,
+	pushInterval: 200,
 	init: function(config) {
 		var xStep = 200;
 		while (config.x < this.enterX) {
@@ -62,10 +69,12 @@ var foreCloudQ = {
 		}
 	},
 	enterGranted: function() {
-		//!refactor!! push frequency attribute
-		return ((frameCount % 500) == 0);
+		return (frameCount % this.pushInterval == 0);
 	},
 	leaveGranted: function() {
+		if (this.queue[0] == undefined) {
+			return false;
+		}
 		return this.queue[0].x < this.leaveX;
 	}
 };
@@ -74,6 +83,7 @@ var backCloudQ = {
 	classType: Cloud,
 	enterX: canvasWidth + 300,
 	leaveX: -300,
+	pushInterval: 200,
 	init: function(config) {
 		var xStep = 150;
 		while (config.x < this.enterX) {
@@ -87,9 +97,12 @@ var backCloudQ = {
 		}
 	},
 	enterGranted: function() {
-		return ((frameCount % 500) == 0);
+		return (frameCount % this.pushInterval == 0);
 	},
 	leaveGranted: function() {
+		if (this.queue[0] == undefined) {
+			return false;
+		}
 		return this.queue[0].x < this.leaveX;
 	}
 };
