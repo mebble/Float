@@ -1,13 +1,13 @@
 var foreTreeQ = {
 	queue: [],
-	xStep: 30,
 	classType: Pine,
 	enterX: canvasWidth + 100,
 	leaveX: -100,
 	init: function(config) {
+		var xStep = 30;
 		while (config.topX < this.enterX) {
 			this.queue.push(new this.classType(config));
-			config.topX += this.xStep;
+			config.topX += xStep;
 			config.topY = random(config.baseY - 100, config.baseY - 50);
 		}
 	},
@@ -21,14 +21,14 @@ var foreTreeQ = {
 };
 var backTreeQ = {
 	queue: [],
-	xStep: 30,
 	classType: Pine,
 	enterX: canvasWidth + 100,
 	leaveX: -100,
 	init: function(config) {
+		var xStep = 30;
 		while (config.topX < this.enterX) {
 			this.queue.push(new this.classType(config));
-			config.topX += this.xStep;
+			config.topX += xStep;
 			config.topY = random(config.baseY - 130, config.baseY - 80);
 		}
 	},
